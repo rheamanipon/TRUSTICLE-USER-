@@ -19,7 +19,7 @@
   
   /* Status Colors */
   --pending-color: #c5953b;
-  --real-color: #4E814A;
+  --legit-color: #4E814A;
   --fake-color: #ac302b;
   
   /* UI Colors */
@@ -75,7 +75,7 @@ body {
 
 .main-content {
   flex: 1;
-  margin-left: 10px;
+  margin-left: 180px;
   padding: 20px;
   width: calc(100% - 180px);
   transition: margin-left 0.3s ease, width 0.3s ease;
@@ -137,12 +137,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.logo-container:hover {
-  background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Logo styles */
@@ -242,11 +236,16 @@ body {
   color: white;
   text-decoration: none;
   font-size: 14px;
-  transition: background-color 0.2s ease;
+  transition: all 0.3s ease-in-out;
+  border-left: 3px solid transparent;
 }
 
 .submenu-item.active {
   background-color: rgba(255, 255, 255, 0.2);
+  border-left: 3px solid #2ea2a2;
+  font-weight: 600;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+  padding-left: calc(45px - 3px); /* Adjust padding to keep text aligned when border is added */
 }
 
 .submenu-item i {
@@ -410,6 +409,19 @@ body {
   gap: 5px;
 }
 
+.btn-add {
+  background-color: #068891;
+  color: white;
+  font-weight: bold;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.btn-add:hover {
+  background-color: #27b3ac;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
 .btn-primary {
   background-color: var(--primary-color);
   color: white;
@@ -429,12 +441,12 @@ body {
   background-color: var(--primary-color-hover);
 }
 
-.btn-real {
-  background-color: var(--real-color);
+.btn-legit {
+  background-color: var(--legit-color);
   color: white;
 }
 
-.btn-real:hover {
+.btn-legit:hover {
   background-color: #219653;
 }
 
@@ -487,26 +499,54 @@ tr:hover {
 }
 
 .action-icon {
-  color: #999;
   cursor: pointer;
-  transition: color 0.3s;
+  margin: 0 5px;
+  transition: color 0.2s;
 }
 
-.action-icon:hover {
-  color: var(--primary-color);
+.fa-edit:hover {
+  color: #007bff;
+}
+
+.fa-trash:hover {
+  color: #dc3545;
 }
 
 /* ===== Status Indicators ===== */
 .status-pending, .result-pending {
-  color: var(--pending-color);
+  color: rgb(169 118 3);
+  background-color: #cdb98091;
 }
 
-.status-real, .result-real {
-  color: var(--real-color);
+.status-legit, .result-legit {
+  color: #3e863e;
+  background-color: rgb(138 200 133 / 47%);
 }
 
 .status-fake, .result-fake {
   color: var(--fake-color);
+  background-color: rgba(172, 48, 43, 0.1);
+}
+
+.result-legit, .result-fake, .result-pending {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  min-width: 80px;
+}
+
+.status-legit, .status-fake, .status-pending {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  min-width: 80px;
+  margin-top: 9.5px;
 }
 
 /* Status badge styles */
@@ -664,22 +704,28 @@ tr:hover {
 .pagination {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
-  gap: 5px;
+  align-items: center;
+  margin: 20px 0;
+}
+
+#pagination-numbers {
+  display: flex;
+  align-items: center;
 }
 
 .pagination a {
+  margin: 0 5px;
+  padding: 5px 10px;
+  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 30px;
   min-width: 30px;
-  padding: 0 5px;
   border-radius: 4px;
   background-color: var(--white);
   border: 1px solid var(--border-color);
   color: var(--text-color);
-  text-decoration: none;
   transition: all 0.3s;
 }
 
@@ -691,6 +737,12 @@ tr:hover {
 
 .pagination a:hover:not(.active) {
   background-color: var(--input-bg);
+}
+
+.pagination a.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
 }
 
 /* ===== Modal Styles ===== */
@@ -750,6 +802,7 @@ tr:hover {
 /* ===== Filter Dropdown ===== */
 .filter-container {
   position: relative;
+  display: inline-block;
 }
 
 .filter-container:hover .btn {
@@ -759,29 +812,29 @@ tr:hover {
 .filter-dropdown {
   position: absolute;
   top: 100%;
-  right: 0;
+  left: 0;
   background-color: white;
   border: 1px solid var(--border-color);
   border-radius: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 100;
-  display: none;
   min-width: 150px;
+  z-index: 1000;
+  display: none;
+  margin-top: 5px;
 }
 
 .filter-dropdown.show {
-  display: block;
+  display: block !important;
 }
 
 .filter-option {
-  padding: 8px 15px;
+  padding: 10px 15px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .filter-option:hover {
-  background-color: var(--hover-color);
-  color: white;
+  background-color: rgba(138, 126, 72, 0.1);
 }
 
 /* ===== Tabs ===== */
@@ -930,4 +983,75 @@ tr:hover {
   .pagination {
     flex-wrap: wrap;
   }
+}
+
+/* Highlight style for fake keywords */
+.highlighted-keyword {
+  background-color: rgba(255, 87, 51, 0.15);
+  border-bottom: 1px dashed #ff5733;
+  padding: 0 2px;
+  position: relative;
+  transition: all 0.2s ease;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(255, 87, 51, 0.1);
+  color: rgb(255, 255, 255);
+}
+
+/* Hover effect for highlighted keywords */
+.highlighted-keyword:hover {
+  background-color: rgba(255, 144, 119, 0.613);
+  border-bottom: 1px solid #ff5733;
+  box-shadow: 0 2px 4px rgba(255, 87, 51, 0.2);
+}
+
+.keyword-count {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #777;
+  font-style: italic;
+}
+
+/* Confirmation modal styles */
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.modal-content p {
+  text-align: center;
+}
+
+/* Make the action button container stand out */
+.action-button-container {
+  margin: 15px 0;
+  padding: 8px 15px;
+  background-color: #fffaf5;
+  border-radius: 4px;
+}
+
+/* Text alignment helper */
+.text-center {
+  text-align: center;
+}
+
+/* Updated action icon styles */
+.action-icon {
+  cursor: pointer;
+  margin: 0 5px;
+  transition: color 0.2s;
+}
+
+.fa-edit:hover {
+  color: #007bff;
+}
+
+.fa-trash:hover {
+  color: #dc3545;
 }

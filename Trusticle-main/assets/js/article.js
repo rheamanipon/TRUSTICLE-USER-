@@ -466,7 +466,9 @@ $(document).ready(function() {
                                        (article.status === 'fake' ? 'status-fake' : 'status-pending');
                     
                     const statusText = article.status === 'pending' ? 'Pending – Waiting for Admin Review' : 
-                                      capitalizeFirstLetter(article.status);
+                                      (article.status === 'legit' ? 'Legit - Reviewed by Admin' :
+                                      (article.status === 'fake' ? 'Fake - Reviewed by Admin' :
+                                      capitalizeFirstLetter(article.status)));
                     
                     $('#articleModalStatus').attr('class', 'article-status ' + statusClass).text(statusText);
                     
@@ -790,7 +792,10 @@ $(document).ready(function() {
                         </div>
                         
                         <div class="status-badge ${statusClass}">
-                            ${capitalizeFirstLetter(article.status)}
+                            ${article.status === 'pending' ? 'Pending' : 
+                              (article.status === 'legit' ? 'Legit' : 
+                              (article.status === 'fake' ? 'Fake' : 
+                              capitalizeFirstLetter(article.status)))}
                         </div>
                     </div>
                 </div>
@@ -1194,7 +1199,10 @@ $(document).ready(function() {
                         </div>
                         
                         <div class="status-badge ${statusClass}">
-                            ${capitalizeFirstLetter(article.status)}
+                            ${article.status === 'pending' ? 'Pending' : 
+                              (article.status === 'legit' ? 'Legit' : 
+                              (article.status === 'fake' ? 'Fake' : 
+                              capitalizeFirstLetter(article.status)))}
                         </div>
                     </div>
                 </div>

@@ -171,7 +171,7 @@ $stmt->close();
                                             <?php if ($article['status'] == 'pending'): ?>
                                                 <span class="result-pending">Pending</span>
                                             <?php elseif ($article['status'] == 'legit'): ?>
-                                                <span class="result-real">Real</span>
+                                                <span class="result-legit">Legit</span>
                                             <?php elseif ($article['status'] == 'fake'): ?>
                                                 <span class="result-fake">Fake</span>
                                             <?php endif; ?>

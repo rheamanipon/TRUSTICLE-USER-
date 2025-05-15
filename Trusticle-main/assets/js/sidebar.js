@@ -274,6 +274,23 @@ $(document).ready(function() {
         initActiveStates();
     }
     
+    // Profile image initialization from sessionStorage
+    function initProfileImage() {
+        const storedProfileImageUrl = sessionStorage.getItem('profileImageUrl');
+        if (storedProfileImageUrl) {
+            console.log('Sidebar init - found stored profile image URL:', storedProfileImageUrl);
+            
+            // Add timestamp to prevent caching
+            const cacheBustUrl = storedProfileImageUrl + '?v=' + new Date().getTime();
+            
+            // Update sidebar profile image
+            $('.sidebar .profile-image').attr('src', cacheBustUrl);
+        }
+    }
+    
+    // Initialize profile image when document is ready
+    initProfileImage();
+    
     // Start the app
     init();
 });

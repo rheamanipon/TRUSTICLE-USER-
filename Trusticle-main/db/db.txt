@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS articles (
     user_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
+    excerpt TEXT NULL DEFAULT NULL,
     source_url VARCHAR(255),
     date_published DATE,
     category_id INT NOT NULL,

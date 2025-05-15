@@ -45,17 +45,16 @@ function generate_initials_image($first_name, $last_name, $size = 200) {
 function get_profile_image($profile_photo, $first_name, $last_name, $size = 200) {
     // Check if the user has a custom profile photo
     if (!empty($profile_photo) && $profile_photo !== 'default.jpg') {
-        // First check if the file exists in the expected location
-        $root_path = $_SERVER['DOCUMENT_ROOT'] . '/Trusticle/assets/images/profiles/' . $profile_photo;
-        $user_path = $_SERVER['DOCUMENT_ROOT'] . '/Trusticle/user/assets/images/profiles/' . $profile_photo;
+        // First determine if we're in admin or user section based on the URL
+        $is_admin = strpos($_SERVER['REQUEST_URI'], '/admin/') !== false;
         
-        // If the image exists in user/assets, use that path
-        if (file_exists($user_path)) {
-            return '../assets/images/profiles/' . $profile_photo;
+        // Profile photos are always stored in the main assets directory
+        if ($is_admin) {
+            return '../../assets/images/profiles/' . $profile_photo;
+        } else {
+            // For user section
+            return '../../assets/images/profiles/' . $profile_photo;
         }
-        
-        // Default to the root assets path
-        return '../../assets/images/profiles/' . $profile_photo;
     }
     
     // Generate and return initials image URL

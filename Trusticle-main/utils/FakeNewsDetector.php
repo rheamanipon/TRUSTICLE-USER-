@@ -6,8 +6,8 @@
 class FakeNewsDetector {
     private $conn;
     private $keywords = [];
-    private $minScore = 0;
-    private $maxScore = 100;
+    //private $minScore = 0;
+    //private $maxScore = 100;
     
     // Weighting factors for the scoring components
     private $weights = [

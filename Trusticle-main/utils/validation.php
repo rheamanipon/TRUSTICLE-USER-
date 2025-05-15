@@ -124,8 +124,8 @@ class Validator {
         // Check for special characters
         if (preg_match('/[^a-zA-Z0-9]/', $password)) $strength++;
         
-        if ($strength < 3) {
-            $this->errors[] = "{$label} must contain at least 3 of the following: lowercase letters, uppercase letters, numbers, and special characters";
+        if ($strength < 2) {
+            $this->errors[] = "{$label} must contain at least 2 of the following: lowercase letters, uppercase letters, numbers, and special characters";
         }
         
         return $this;

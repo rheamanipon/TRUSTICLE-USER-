@@ -68,7 +68,7 @@
 }
 
 /* Status indicators - using admin styling */
-.result-real, .result-fake, .result-pending {
+.result-legit, .result-fake, .result-pending {
   display: inline-block;
   padding: 5px 12px;
   border-radius: 15px;
@@ -78,9 +78,9 @@
   min-width: 80px;
 }
 
-.result-real {
-  color: var(--real-color);
-  background-color: rgba(78, 129, 74, 0.1);
+.result-legit {
+  color: #3e863e;
+  background-color: rgb(138 200 133 / 47%);
 }
 
 .result-fake {
@@ -89,7 +89,7 @@
 }
 
 .result-pending {
-  color: rgba(196, 157, 74, 0.863);
+  color: rgb(169 118 3);
   background-color: var(--pending-color);
 }
 

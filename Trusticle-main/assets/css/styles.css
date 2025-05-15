@@ -14,7 +14,7 @@
   
   /* Status Colors */
   --pending-color: #ddb3659d;
-  --real-color: #4E814A;
+  --legit-color: #4E814A;
   --fake-color: #ac302b;
   
   /* UI Colors */
@@ -510,7 +510,7 @@ body {
     margin-right: 5px;
 }
 
-.status-real, .status-fake, .status-pending {
+.status-legit, .status-fake, .status-pending, .status-suspicious {
     display: inline-block;
     padding: 5px 12px;
     border-radius: 15px;
@@ -521,25 +521,24 @@ body {
 }
 
 .status-pending {
-    color: rgb(169 118 3);
-    background-color: #cdb98091;
+    color: rgb(246 246 246);
+    background-color: #c59c27ad;
 }
 
 
-.status-real {
-    color: #67dd5e;
-    background-color: rgb(78 129 74 / 67%);
+.status-legit {
+    color: #e7ece7;
+    background-color: rgb(78 129 74 / 84%);
 }
 
 .status-suspicious {
     background-color: #fff3cd;
     color: #856404;
-    border: 1px solid #ffeeba;
 }
 
 .status-fake {
-    color: #f39a96;
-    background-color: rgb(219 64 57 / 37%);
+    color: #f6eded;
+    background-color: rgb(172 48 43 / 86%);
 }
 
 .article-menu {

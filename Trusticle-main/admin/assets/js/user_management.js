@@ -209,7 +209,7 @@ $(document).ready(function () {
         const userName = $row.find('td:nth-child(2)').text();
 
         if (confirm(`Are you sure you want to delete ${userName}?`)) {
-            alert(`User ${userName} deleted successfully`);
+            NotificationSystem.success(`User ${userName} deleted successfully`);
             $row.remove();
         }
     });

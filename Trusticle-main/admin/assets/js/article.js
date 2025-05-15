@@ -153,15 +153,15 @@ $(document).ready(function() {
             
             if (articleStatus.toLowerCase().includes('pending')) {
                 $statusElement.addClass('status-pending-label');
-            } else if (articleStatus.toLowerCase().includes('real')) {
-                $statusElement.addClass('status-real-label');
+            } else if (articleStatus.toLowerCase().includes('legit')) {
+                $statusElement.addClass('status-legit-label');
             } else if (articleStatus.toLowerCase().includes('fake')) {
                 $statusElement.addClass('status-fake-label');
             }
             
             // Set result percentage (placeholder logic)
             let percentage = '75%';
-            if (articleResult.toLowerCase() === 'real') {
+            if (articleResult.toLowerCase() === 'legit') {
                 percentage = '85%';
             } else if (articleResult.toLowerCase() === 'fake') {
                 percentage = '20%';
@@ -197,20 +197,20 @@ $(document).ready(function() {
             $approveBtn.on('click', function() {
                 // Update modal status
                 const $statusElement = $articleViewModal.find('.article-status');
-                $statusElement.text('Real');
-                $statusElement.removeClass().addClass('article-status status-real-label');
+                $statusElement.text('Legit');
+                $statusElement.removeClass().addClass('article-status status-legit-label');
                 
                 // Update table row if available
                 if ($currentArticleRow) {
                     // Update result cell
                     const $resultCell = $currentArticleRow.find('td:nth-child(7)');
-                    if ($resultCell.length) $resultCell.text('Real');
+                    if ($resultCell.length) $resultCell.text('Legit');
                     
                     // Update status cell
                     const $statusCell = $currentArticleRow.find('td:nth-child(8)');
                     if ($statusCell.length) {
-                        $statusCell.text('Real');
-                        $statusCell.removeClass().addClass('status-real');
+                        $statusCell.text('Legit');
+                        $statusCell.removeClass().addClass('status-legit');
                     }
                 }
                 

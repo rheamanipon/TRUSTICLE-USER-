@@ -1,4 +1,12 @@
 $(document).ready(function() {
+    // Get the article counts from the global articleData object
+    const pendingCount = window.articleData ? window.articleData.pending : 0;
+    const legitCount = window.articleData ? window.articleData.legit : 0;
+    const fakeCount = window.articleData ? window.articleData.fake : 0;
+    const totalCount = window.articleData ? window.articleData.total : 0;
+    
+    console.log("Chart data:", { pendingCount, legitCount, fakeCount, totalCount });
+    
     // Initialize the donut chart for article distribution
     const donutCtx = document.getElementById('donutChart').getContext('2d');
     
@@ -25,7 +33,7 @@ $(document).ready(function() {
                 // Line 1 - number
                 ctx.fillStyle = '#333';
                 ctx.font = 'bold 40px Arial';
-                ctx.fillText('100', centerX, centerY - 30);
+                ctx.fillText(totalCount.toString(), centerX, centerY - 30);
                 
                 // Line 2 - text
                 ctx.fillStyle = '#777';
@@ -37,16 +45,21 @@ $(document).ready(function() {
         }
     };
     
+    // Calculate percentages for display
+    const pendingPercentage = totalCount === 0 ? 0 : Math.round((pendingCount / totalCount) * 100);
+    const legitPercentage = totalCount === 0 ? 0 : Math.round((legitCount / totalCount) * 100);
+    const fakePercentage = totalCount === 0 ? 0 : Math.round((fakeCount / totalCount) * 100);
+    
     // Chart.js donut chart configuration
     const donutChart = new Chart(donutCtx, {
         type: 'doughnut',
         data: {
-            labels: ['Pending', 'Real', 'Fake'],
+            labels: ['Pending', 'Legit', 'Fake'],
             datasets: [{
-                data: [60, 20, 20],
+                data: [pendingCount, legitCount, fakeCount],
                 backgroundColor: [
                     '#FCD34D', // Pending (yellow)
-                    '#34D399', // Real (green)
+                    '#34D399', // Legit (green)
                     '#F87171'  // Fake (red)
                 ],
                 borderWidth: 0,
@@ -71,8 +84,9 @@ $(document).ready(function() {
                     callbacks: {
                         label: function(context) {
                             const label = context.label || '';
-                            const value = context.parsed || 0;
-                            return `${label}: ${value}%`;
+                            const value = context.raw || 0;
+                            const percentage = totalCount === 0 ? 0 : Math.round((value / totalCount) * 100);
+                            return `${label}: ${value} (${percentage}%)`;
                         }
                     }
                 }
@@ -84,14 +98,21 @@ $(document).ready(function() {
     // Initialize the line chart for fake keywords
     const lineCtx = document.getElementById('lineChart').getContext('2d');
     
+    // Check if keyword data is available
+    const keywordLabels = window.keywordData ? window.keywordData.labels : ['No', 'Keywords', 'Found', 'Please', 'Submit', 'Fake', 'Articles', 'First'];
+    const keywordValues = window.keywordData ? window.keywordData.values : [0, 0, 0, 0, 0, 0, 0, 0];
+    
+    console.log("Using keyword labels:", keywordLabels);
+    console.log("Using keyword values:", keywordValues);
+    
     // Chart.js line chart configuration
     const lineChart = new Chart(lineCtx, {
         type: 'bar',
         data: {
-            labels: ['Crazy', 'Jansdale', 'Baho', 'Multo', 'Bro', 'Luh', 'Bading', 'Ako'],
+            labels: keywordLabels,
             datasets: [{
                 label: 'Frequency',
-                data: [5, 10, 40, 20, 30, 70, 10, 60],
+                data: keywordValues,
                 backgroundColor: '#4F46E5',
                 borderColor: '#4F46E5',
                 borderWidth: 0,
@@ -142,7 +163,12 @@ $(document).ready(function() {
                         size: 12
                     },
                     padding: 10,
-                    displayColors: false
+                    displayColors: false,
+                    callbacks: {
+                        label: function(context) {
+                            return `Occurrences: ${context.raw}`;
+                        }
+                    }
                 }
             }
         }

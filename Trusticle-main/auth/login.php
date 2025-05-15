@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="login.css">
   <link rel="stylesheet" href="../assets/css/validation.css">
-  
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
@@ -32,7 +31,7 @@
         <div class="logo">
           <div class="logo">
                 <img src="../user/assets/images/logo2.png" alt="Trusticle Logo" class="login-logo">
-                </div>
+          </div>
         </div>
         
         <h2 class="login-heading">LOGIN</h2>

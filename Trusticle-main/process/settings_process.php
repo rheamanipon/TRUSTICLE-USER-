@@ -270,6 +270,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Handle account deletion
         elseif ($formType === 'delete_account') {
             try {
+                // Include activity logger
+                require_once '../includes/activity_logger.php';
+                
+                // Get user email for logging
+                $emailStmt = $conn->prepare("SELECT email FROM users WHERE id = ?");
+                $emailStmt->bind_param("i", $userId);
+                $emailStmt->execute();
+                $emailResult = $emailStmt->get_result();
+                $userData = $emailResult->fetch_assoc();
+                $userEmail = $userData['email'];
+                $emailStmt->close();
+                
                 // Start a transaction to ensure data consistency
                 $conn->begin_transaction();
                 
@@ -283,8 +295,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $userStmt->bind_param("i", $userId);
                 
                 if ($userStmt->execute()) {
-                    // Log the activity
-                    logUserActivity($userId, "Soft deleted account", $conn);
+                    // Log the activity - user soft deleted their own account
+                    logUserSoftDelete($userId, $userId, $userEmail);
                     
                     // Commit the transaction
                     $conn->commit();

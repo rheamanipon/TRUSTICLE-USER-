@@ -32,6 +32,9 @@ $user_profile_photo = isset($_SESSION['profile_photo']) ? $_SESSION['profile_pho
 
 // Generate profile image
 $profile_image = get_profile_image($user_profile_photo, $user_first_name, $user_last_name, 45);
+
+// Get the current file name to highlight active page
+$current_file = basename($_SERVER['PHP_SELF']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,19 +58,19 @@ $profile_image = get_profile_image($user_profile_photo, $user_first_name, $user_
         </div>
         
         <div class="sidebar-menu">
-            <a href="dashboard.php" class="menu-item">
+            <a href="dashboard.php" class="menu-item <?php echo ($current_file === 'dashboard.php') ? 'active' : ''; ?>">
                 <i class="fas fa-th-large"></i>
                 <span>Dashboard</span>
             </a>
-            <a href="article_main.php" class="menu-item">
+            <a href="article_main.php" class="menu-item <?php echo ($current_file === 'article_main.php') ? 'active' : ''; ?>">
                 <i class="fas fa-file-alt"></i>
                 <span>Article</span>
             </a>
-            <a href="analytics.php" class="menu-item">
+            <a href="analytics.php" class="menu-item <?php echo ($current_file === 'analytics.php') ? 'active' : ''; ?>">
                 <i class="fas fa-chart-bar"></i>
                 <span>Analytics</span>
             </a>
-            <div class="menu-item settings-menu" id="settingsMenu">
+            <div class="menu-item settings-menu <?php echo ($current_file === 'settings.php') ? 'active' : ''; ?>" id="settingsMenu">
                 <i class="fas fa-cog"></i>
                 <span>Settings</span>
                 <i class="fas fa-chevron-down settings-arrow"></i>
@@ -83,7 +86,7 @@ $profile_image = get_profile_image($user_profile_photo, $user_first_name, $user_
                     <span>Account Security</span>
                 </a>
             </div>
-            <a href="about.php" class="menu-item">
+            <a href="about.php" class="menu-item <?php echo ($current_file === 'about.php') ? 'active' : ''; ?>">
                 <i class="fas fa-info-circle"></i>
                 <span>About Us</span>
             </a>

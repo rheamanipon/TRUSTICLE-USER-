@@ -69,6 +69,38 @@ $(document).ready(function() {
         });
     }
     
+    // Delete activity log entry
+    $(document).on('click', '.delete-log', function() {
+        if (confirm('Are you sure you want to delete this activity log entry?')) {
+            const logId = $(this).data('id');
+            
+            $.ajax({
+                url: '../controllers/activity_log_controller.php',
+                type: 'POST',
+                data: {
+                    action: 'delete_log',
+                    log_id: logId
+                },
+                success: function(response) {
+                    const result = JSON.parse(response);
+                    if (result.success) {
+                        // Remove the row from the table
+                        $('.table-container tbody tr').each(function() {
+                            if ($(this).find('td:first').text() == logId) {
+                                $(this).remove();
+                            }
+                        });
+                    } else {
+                        alert('Error: ' + result.message);
+                    }
+                },
+                error: function() {
+                    alert('An error occurred while trying to delete the log entry.');
+                }
+            });
+        }
+    });
+    
     // Tab switching for settings page
     const $tabs = $('.tab');
     if ($tabs.length > 0) {

@@ -58,8 +58,8 @@
   color: #333;
 }
 
-.status-real-label {
-  background-color: var(--real-color);
+.status-legit-label {
+  background-color: var(--legit-color);
   color: white;
 }
 
