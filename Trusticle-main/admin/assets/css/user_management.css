@@ -1,0 +1,65 @@
+/* User Management specific styles - uses common styles from styles.css */
+
+/* Status active/inactive text styles */
+td.active-status {
+  color: #006A71;
+  font-weight: 500;
+}
+
+td.inactive-status {
+  color: #999;
+}
+
+/* Action icons for user management */
+.action-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-icon:hover {
+  color: #006A71;
+}
+
+.delete-icon:hover {
+  color: #e74c3c;
+}
+
+.role-icon:hover {
+  color: #3498db;
+}
+
+/* User management specific modal elements */
+.user-info-text {
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Role/Active select dropdowns */
+.role-select, .active-select {
+  background-color: rgba(255,255,255,0.2);
+  color: white;
+  font-weight: 500;
+}
+
+.role-select option, .active-select option {
+  background-color: #006A71;
+  color: white;
+}
+
+/* Specific button for adding users */
+.add-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  color: #006A71;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.add-btn:hover {
+  background-color: #f5f5f5;
+}

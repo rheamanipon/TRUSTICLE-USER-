@@ -1,0 +1,496 @@
+/* Variables */
+:root {
+  --background-color: #f5f5f5;
+  --profile-text-muted: #666;
+}
+
+.sidebar-collapsed .main-content {
+  margin-left: 70px;
+}
+
+/* Tab content */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.settings-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.content-card {
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+/* Profile section */
+.profile-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.profile-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: 100%;
+}
+
+/* Profile info text */
+.profile-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px; /* increased spacing to fix too close username */
+}
+
+.profile-info p {
+  color: var(--profile-text-muted);
+}
+
+/* Form styles */
+.settings-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: var(--profile-text-muted);
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  height: 40px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0 12px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* Save button */
+button.save-button {
+  background-color: #006a71;
+  color: var(--white);
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  grid-column: 1 / 3;
+  margin-top: 16px;
+  transition: background-color 0.3s;
+}
+
+button.save-button:hover,
+button.save-button:focus {
+  background-color: #2ea2a2;
+  outline: none;
+}
+
+/* Security tabs */
+.security-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 24px;
+}
+
+.security-tab {
+  padding: 12px 16px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-right: 16px;
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+
+.security-tab.active,
+.security-tab:focus {
+  border-bottom-color: var(--primary-color);
+  font-weight: 600;
+  outline: none;
+}
+
+/* Security content */
+.security-content {
+  display: none;
+}
+
+.security-content.active {
+  display: block;
+}
+
+/* Account action sections */
+.account-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.action-section {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.action-section h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.action-section p {
+  color: var(--profile-text-muted);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+/* Action buttons */
+.action-button {
+  background-color: #006a71;
+  color: var(--white);
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0 16px;
+  transition: background-color 0.3s;
+}
+
+.action-button:hover,
+.action-button:focus {
+  background-color: #2ea2a2;
+  outline: none;
+}
+
+/* Confirmation dialog */
+dialog {
+  border: none;
+  border-radius: 8px;
+  padding: 24px 32px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  width: 90%;
+  max-width: 400px;
+  position: fixed;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 1000;
+}
+
+.dialog-buttons {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 70px;
+  }
+
+  .sidebar-collapsed .main-content {
+    margin-left: 0;
+  }
+
+  .settings-form {
+    grid-template-columns: 1fr;
+  }
+
+  .save-button {
+    grid-column: 1 !important;
+  }
+}
+
+/* Password strength indicator styles */
+    .password-strength {
+      position: absolute;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 3px;
+      color: white;
+      z-index: 10;
+      display: inline-block;
+    }
+    .password-strength.weak {
+      background-color: #f44336;
+    }
+    .password-strength.medium {
+      background-color: #ff9800;
+    }
+    .password-strength.strong {
+      background-color: #4CAF50;
+    }
+    
+    /* Password field styling */
+    .form-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    
+    .form-group input {
+      height: 40px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      transition: border-color 0.3s ease;
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: #006a71;
+      box-shadow: 0 0 0 2px rgba(0, 106, 113, 0.2);
+    }
+    
+    /* Make room for the password toggle icon */
+    input[type="password"] {
+      padding-right: 40px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    /* Hide default password toggle */
+    input[type="password"]::-ms-reveal,
+    input[type="password"]::-ms-clear {
+      display: none;
+    }
+    input[type="password"]::-webkit-credentials-auto-fill-button {
+      display: none !important;
+    }
+    
+    /* Password toggle icon alignment */
+    .password-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #666;
+      z-index: 5;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 24px;
+      width: 24px;
+      padding: 0;
+      background: none;
+      border: none;
+      text-align: center;
+      pointer-events: auto;
+    }
+    
+    /* Hover effect for password toggle */
+    .password-toggle:hover {
+      color: #333;
+    }
+
+    /* Position adjustment for form within tabs */
+    .security-content .form-group {
+      margin-bottom: 24px;
+    }
+    
+    .security-content .form-group input {
+      width: 100%;
+    }
+    
+    .security-content .password-toggle {
+      top: calc(50% + 15px);
+    }
+    
+    /* Button styles matching sidebar color scheme */
+    button.save-button,
+    button.action-button,
+    #confirm-yes,
+    #confirm-no,
+    #info-ok {
+      background-color: #006a71;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      padding: 0 16px;
+      height: 40px;
+      transition: background-color 0.3s;
+    }
+    
+    button.save-button:hover,
+    button.action-button:hover,
+    #confirm-yes:hover,
+    #confirm-no:hover,
+    #info-ok:hover {
+      background-color: #2ea2a2;
+    }
+    
+    /* Account action button styling */
+    .account-actions .action-button {
+      width: 200px; /* Fixed width for both buttons */
+      display: block;
+      margin-top: 10px;
+      text-align: center;
+    }
+    
+    /* Delete button specific styling */
+    #delete-btn {
+      background-color: #d9534f;
+    }
+    
+    #delete-btn:hover {
+      background-color: #c9302c;
+    }
+    
+    /* Dialog styling */
+    dialog {
+      border-radius: 8px;
+      border: none;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 24px;
+    }
+    
+    dialog h2 {
+      color: #006a71;
+      margin-bottom: 16px;
+    }
+    
+    .dialog-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    
+    /* Profile image styles - updated for better display */
+    .profile-section {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    
+    /* Default profile image styling for all pages */
+    .profile-image {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 20px;
+      border: 2px solid #006a71;
+    }
+    
+    /* Enhanced profile image styling specific to Edit Profile page */
+    #edit-profile .profile-image {
+      width: 150px;
+      height: 150px;
+      border-width: 3px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    #edit-profile .profile-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .profile-image-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s;
+      cursor: pointer;
+    }
+    
+    .profile-image:hover .profile-image-overlay {
+      opacity: 1;
+    }
+    
+    /* Change icon to pencil for Edit Profile page */
+    #edit-profile .profile-image-overlay i {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+    
+    .profile-image-overlay i {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+    
+    .profile-image-overlay span {
+      font-size: 12px;
+      text-align: center;
+    }
+    
+    /* Make text larger in Edit Profile page */
+    #edit-profile .profile-image-overlay span {
+      font-size: 14px;
+      font-weight: 500;
+    }
+  

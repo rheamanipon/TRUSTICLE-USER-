@@ -1,0 +1,85 @@
+/* Analytics specific styles - uses common styles from styles.css */
+
+/* Analytics specific welcome message */
+.welcome-message {
+  margin-bottom: 25px;
+}
+
+.welcome-message h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.welcome-message p {
+  color: #666;
+  font-size: 16px;
+}
+
+/* Donut chart specific styles */
+.donut-container {
+  position: relative;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Line chart container */
+.line-chart-container {
+  position: relative;
+  height: 250px;
+}
+
+/* Analytics content */
+.analytics-content {
+  width: 100%;
+}
+
+/* Ensure content is not hidden by sidebar */
+.content-area {
+  margin-left: 180px; /* Match sidebar width to prevent content from being hidden */
+}
+
+.sidebar.collapsed + .content-area {
+  margin-left: 60px; /* Match collapsed sidebar width */
+}
+
+/* Overrides for stat cards in analytics view */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* Ensure chart cards have proper styling */
+.chart-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .content-area {
+    margin-left: 0;
+    padding: 15px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
+}
